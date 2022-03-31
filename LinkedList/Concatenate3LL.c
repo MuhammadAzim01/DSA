@@ -26,7 +26,7 @@ int main(void) {
         create(&head3, &tail3, (i * 3));
     }
 
-    Node *tmp = head1;
+    tmp = head1;
     int flag = 0;
     
     do {
