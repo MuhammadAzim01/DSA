@@ -138,17 +138,24 @@ void insertAtN(int data, int pos) {
 
         tail = head;
 
-        while (count != pos){
+        while (count != pos && tail != NULL){
             pre = tail;
             tail = tail->next;
             count++;
         }
-        //Inserting New node
-        n = (Node* ) malloc(sizeof(Node));
-        n->data = data;
-        //linking new node
-        n->next = tail;
-        pre->next = n;  
+
+        if (tail != NULL) {
+            //Inserting New node
+            n = (Node* ) malloc(sizeof(Node));
+            n->data = data;
+            //linking new node
+            n->next = tail;
+            pre->next = n;
+        } else {
+            printf("As the position does not exist, adding the data at last position in the list! ");
+            insertAtEnd(data);
+        }
+          
     }
     
 }
@@ -189,14 +196,18 @@ void delAtPos(int pos) {
         Node *pre;
         
         tail = head;
-        while (count != pos) {
+        while (count != pos && tail != NULL) {
             pre = tail;
             tail = tail->next;
             count++;
         }
-
-        pre->next = tail->next;
-        free(tail);
+        if (tail != NULL) {
+            pre->next = tail->next;
+            free(tail);
+        } else {
+            printf("As the position does not exist, removing the data at last position in the list! ");
+            delAtEnd();
+        }
     }
 
 }
